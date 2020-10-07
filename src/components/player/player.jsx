@@ -1,12 +1,40 @@
 import React, { Component } from "react";
-// import PropTypes from "prop-types";
+import { connect } from "react-redux";
+import PropTypes from "prop-types";
+import walkSprite from "../../assets/images/player_walk.png";
+import { handleMovement } from "./movement";
 
 class Player extends Component {
+	construtor() {
+		console.log(this);
+	}
+
 	render() {
-		return <div>Player</div>;
+		const { position } = this.props;
+		return (
+			<div
+				style={{
+					position: "absolute",
+					top: position[1],
+					left: position[0],
+					backgroundImage: `url('${walkSprite}')`,
+					backgroundPosition: "0 0",
+					width: "40px",
+					height: "40px"
+				}}
+			/>
+		);
 	}
 }
 
-Player.propTypes = {};
+function mapStateToProps(state) {
+	return {
+		...state.player
+	};
+}
 
-export default Player;
+Player.propTypes = {
+	position: PropTypes.number.isRequired
+};
+
+export default connect(mapStateToProps)(handleMovement(Player));

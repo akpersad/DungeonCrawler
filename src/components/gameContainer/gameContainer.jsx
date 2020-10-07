@@ -1,12 +1,12 @@
 import React, { Component } from "react";
 // import PropTypes from 'prop-types';
-import Player from "../player/player";
+import World from "../world/world";
 
 class GameContainer extends Component {
 	render() {
 		return (
 			<div>
-				<Player />
+				<World />
 			</div>
 		);
 	}
