@@ -6,14 +6,7 @@ import Map from "../map/map";
 class World extends Component {
 	render() {
 		return (
-			<div
-				style={{
-					width: "800px",
-					height: "400px",
-					margin: "20px auto",
-					position: "relative"
-				}}
-			>
+			<div className="world-container">
 				<Map />
 				<Player />
 			</div>
