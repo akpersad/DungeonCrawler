@@ -19,16 +19,21 @@ const getNewPosition = direction => {
 };
 
 const observeBoundaries = (oldPosition, newPosition) => {
-	return newPosition[0] >= 0 &&
+	return (
+		newPosition[0] >= 0 &&
 		newPosition[0] <= MAP_WIDTH &&
 		newPosition[1] >= 0 &&
 		newPosition[1] <= MAP_HEIGHT
-		? newPosition
-		: oldPosition;
+	);
+};
+
+const observeImpassable = (oldPosition, newPosition) => {
+	return;
 };
 
 const dispatchMove = direction => {
 	const oldPosition = store.getState().player.position;
+	const newPosition = getNewPosition(direction);
 	store.dispatch({
 		type: "MOVE_PLAYER",
 		payload: {
