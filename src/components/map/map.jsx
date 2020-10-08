@@ -20,39 +20,11 @@ class Map extends Component {
 		}
 	}
 
-	setTileBackground(type) {
-		switch (type) {
-			case 0:
-				return {
-					backgroundImage: `url('${Grass}')`
-				};
-			case 5:
-				return {
-					backgroundImage: `url('${Rock}')`
-				};
-			case 6:
-				return {
-					backgroundImage: `url('${Tree}')`
-				};
-			default:
-				return {
-					// backgroundImage: `url('${Grass}')`
-					backgroundColor: "#90ee90"
-				};
-		}
-	}
-
 	mapTile(tiles) {
 		let count = 0;
 		return tiles.map(tile => {
 			count += 1;
-			return (
-				<div
-					className={`tile ${this.getTileSprite(tile)}`}
-					style={this.setTileBackground(tile)}
-					key={count}
-				/>
-			);
+			return <div className={`tile ${this.getTileSprite(tile)}`} key={count} />;
 		});
 	}
 

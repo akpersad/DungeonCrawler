@@ -5,9 +5,9 @@ import World from "../world/world";
 class GameContainer extends Component {
 	render() {
 		return (
-			<div>
+			<>
 				<World />
-			</div>
+			</>
 		);
 	}
 }
