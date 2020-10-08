@@ -31,7 +31,7 @@ function mapStateToProps(state) {
 }
 
 Player.propTypes = {
-	position: PropTypes.number.isRequired
+	position: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(handleMovement(Player));

@@ -1,5 +1,5 @@
 import store from "../../config/store";
-import { SPRITE_SIZE } from "../../global/constants";
+import { SPRITE_SIZE, MAP_HEIGHT, MAP_WIDTH } from "../../global/constants";
 
 const getNewPosition = direction => {
 	const oldPosition = store.getState().player.position;
@@ -18,11 +18,21 @@ const getNewPosition = direction => {
 	}
 };
 
+const observeBoundaries = (oldPosition, newPosition) => {
+	return newPosition[0] >= 0 &&
+		newPosition[0] <= MAP_WIDTH &&
+		newPosition[1] >= 0 &&
+		newPosition[1] <= MAP_HEIGHT
+		? newPosition
+		: oldPosition;
+};
+
 const dispatchMove = direction => {
+	const oldPosition = store.getState().player.position;
 	store.dispatch({
 		type: "MOVE_PLAYER",
 		payload: {
-			position: getNewPosition(direction)
+			position: observeBoundaries(oldPosition, getNewPosition(direction))
 		}
 	});
 };
