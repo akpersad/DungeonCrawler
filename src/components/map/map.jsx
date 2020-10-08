@@ -16,9 +16,8 @@ class Map extends Component {
 			case 6:
 				return "tree";
 			default:
-				break;
+				return "normal";
 		}
-		return true;
 	}
 
 	setTileBackground(type) {
@@ -36,17 +35,21 @@ class Map extends Component {
 					backgroundImage: `url('${Tree}')`
 				};
 			default:
-				break;
+				return {
+					backgroundImage: `url('${Grass}')`
+				};
 		}
-		return true;
 	}
 
 	mapTile(tiles) {
+		let count = 0;
 		return tiles.map(tile => {
+			count += 1;
 			return (
 				<div
 					className={`tile ${this.getTileSprite(tile)}`}
 					style={this.setTileBackground(tile)}
+					key={count}
 				/>
 			);
 		});
@@ -54,8 +57,14 @@ class Map extends Component {
 
 	mapRow() {
 		const { tiles } = this.props;
+		let count = 0;
 		return tiles.map(row => {
-			return <div className="tile-row">{this.mapTile(row)}</div>;
+			count += 1;
+			return (
+				<div className="tile-row" key={count}>
+					{this.mapTile(row)}
+				</div>
+			);
 		});
 	}
 

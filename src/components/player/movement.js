@@ -30,7 +30,7 @@ const observeImpassable = newPosition => {
 	const rowMove = newPosition[1] / SPRITE_SIZE;
 	const columnMove = newPosition[0] / SPRITE_SIZE;
 	const newTile = tiles[rowMove][columnMove];
-	return newTile < 5;
+	return newTile !== 5 && newTile !== 6;
 };
 
 const dispatchMove = newPosiiton => {
