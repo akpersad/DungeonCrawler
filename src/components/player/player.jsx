@@ -13,14 +13,11 @@ class Player extends Component {
 		const { position } = this.props;
 		return (
 			<div
+				className="player-container"
 				style={{
-					position: "absolute",
 					top: position[1],
 					left: position[0],
-					backgroundImage: `url('${walkSprite}')`,
-					backgroundPosition: "0 0",
-					width: "40px",
-					height: "40px"
+					backgroundImage: `url('${walkSprite}')`
 				}}
 			/>
 		);
@@ -34,7 +31,7 @@ function mapStateToProps(state) {
 }
 
 Player.propTypes = {
-	position: PropTypes.number.isRequired
+	position: PropTypes.array.isRequired
 };
 
 export default connect(mapStateToProps)(handleMovement(Player));

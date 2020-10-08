@@ -1,8 +1,10 @@
 import { combineReducers, createStore, compose } from "redux";
 import playerReducer from "../components/player/playerReducer";
+import mapReducer from "../components/map/mapReducer";
 
 const rootReducer = combineReducers({
-	player: playerReducer
+	player: playerReducer,
+	map: mapReducer
 });
 
 /* eslint-disable no-underscore-dangle */
