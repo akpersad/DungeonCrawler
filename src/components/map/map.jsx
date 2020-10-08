@@ -36,7 +36,8 @@ class Map extends Component {
 				};
 			default:
 				return {
-					backgroundImage: `url('${Grass}')`
+					// backgroundImage: `url('${Grass}')`
+					backgroundColor: "#90ee90"
 				};
 		}
 	}
