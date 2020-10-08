@@ -21,4 +21,9 @@
 #root {
     font-family: $OpenSans;
     position: relative;
+    // overflow: hidden;
 }
+
+@import "../components/world/world";
+@import "../components/map/map";
+@import "../components/player/player";
