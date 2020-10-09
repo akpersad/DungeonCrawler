@@ -1,7 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import PropTypes from "prop-types";
-import walkSprite from "../../assets/images/player_walk.png";
+// import walkSprite from "../../assets/images/player_walk.png";
+import walkSprite from "../../assets/images/male_one.png";
 import { handleMovement } from "./movement";
 
 class Player extends Component {
