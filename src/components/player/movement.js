@@ -55,14 +55,16 @@ const observeImpassable = newPosition => {
 
 const dispatchMove = (newPosiiton, direction) => {
 	const walkIndex = getWalkIndex();
+	const previousState = store.getState().player;
+
+	previousState.position = newPosiiton;
+	previousState.direction = direction;
+	previousState.walkIndex = walkIndex;
+	previousState.spriteLocation = getSpritePosition(direction, walkIndex);
+
 	store.dispatch({
 		type: "MOVE_PLAYER",
-		payload: {
-			position: newPosiiton,
-			direction,
-			walkIndex,
-			spriteLocation: getSpritePosition(direction, walkIndex)
-		}
+		payload: previousState
 	});
 };
 

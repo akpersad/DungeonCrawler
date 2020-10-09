@@ -2,10 +2,6 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 
-import Grass from "../../assets/images/grass.jpg";
-import Rock from "../../assets/images/rock.png";
-import Tree from "../../assets/images/tree.png";
-
 class Map extends Component {
 	getTileSprite(type) {
 		switch (type) {
