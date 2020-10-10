@@ -3,6 +3,10 @@ import { connect } from "react-redux";
 import store from "../../config/store";
 import { playChoices } from "../../global/constants";
 // import PropTypes from 'prop-types';
+import maleSprite from "../../assets/images/male_one-large.png";
+import maleTwoSprite from "../../assets/images/male_two-large.png";
+import femaleSprite from "../../assets/images/female_one-large.png";
+import femaleTwoSprite from "../../assets/images/female_two-large.png";
 
 class StartScreen extends Component {
 	handleStartButtonClick(player) {
@@ -42,6 +46,16 @@ class StartScreen extends Component {
 		let counter = 0;
 		return playChoices.map(player => {
 			counter += 1;
+			let image;
+			if (player.playerName === "Player 1") {
+				image = maleSprite;
+			} else if (player.playerName === "Player 2") {
+				image = maleTwoSprite;
+			} else if (player.playerName === "Player 3") {
+				image = femaleSprite;
+			} else if (player.playerName === "Player 4") {
+				image = femaleTwoSprite;
+			}
 			return (
 				<button
 					key={counter}
@@ -51,14 +65,14 @@ class StartScreen extends Component {
 					}}
 					value={player.playerId}
 				>
-					{player.playerName}
+					<img src={image} alt={player.playerName} />
 				</button>
 			);
 		});
 	}
 
 	render() {
-		return this.renderButtonChoice();
+		return <div className="sprite-selection_container">{this.renderButtonChoice()}</div>;
 	}
 }
 
