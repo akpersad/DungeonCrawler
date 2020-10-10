@@ -2,6 +2,7 @@
 
 // Globals
 @import "./partials/mixins";
+@import "./partials/fonts";
 @import "./partials/colors";
 @import "./partials/breakpoints";
 @import "./partials/spacing";
@@ -27,3 +28,4 @@
 @import "../components/world/world";
 @import "../components/map/map";
 @import "../components/player/player";
+@import "../components/startScreen/startScreen";
