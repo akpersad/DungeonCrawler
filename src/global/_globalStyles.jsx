@@ -3,6 +3,7 @@ import MinecraftFont from "../assets/fonts/Minecraft.ttf";
 import Grass from "../assets/images/grass.jpg";
 import Rock from "../assets/images/rock.png";
 import Tree from "../assets/images/tree.png";
+import Chest from "../assets/images/chest.png";
 
 export const GlobalStyle = createGlobalStyle`
   @font-face {
@@ -11,6 +12,12 @@ export const GlobalStyle = createGlobalStyle`
     font-weight: 400;
     src:
       url('${MinecraftFont}') format("truetype")
+  }
+
+  .chest {
+    &:last-of-type {
+      background-image:url('${Chest}');
+    }
   }
   
   .grass {
