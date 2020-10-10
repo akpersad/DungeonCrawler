@@ -20,11 +20,11 @@ const getSpritePosition = (direction, walkIndex) => {
 	switch (direction) {
 		case "SOUTH":
 			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
-		case "EAST":
-			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
-		case "WEST":
-			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
 		case "NORTH":
+			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 1}px`;
+		case "EAST":
+			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 2}px`;
+		case "WEST":
 			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 3}px`;
 		default:
 			return `${SPRITE_SIZE * walkIndex}px ${SPRITE_SIZE * 0}px`;
@@ -33,7 +33,7 @@ const getSpritePosition = (direction, walkIndex) => {
 
 const getWalkIndex = () => {
 	const { walkIndex } = store.getState().player;
-	return walkIndex > 7 ? 0 : walkIndex + 1;
+	return walkIndex > 2 ? 0 : walkIndex + 1;
 };
 
 const observeBoundaries = newPosition => {
@@ -55,14 +55,16 @@ const observeImpassable = newPosition => {
 
 const dispatchMove = (newPosiiton, direction) => {
 	const walkIndex = getWalkIndex();
+	const previousState = store.getState().player;
+
+	previousState.position = newPosiiton;
+	previousState.direction = direction;
+	previousState.walkIndex = walkIndex;
+	previousState.spriteLocation = getSpritePosition(direction, walkIndex);
+
 	store.dispatch({
 		type: "MOVE_PLAYER",
-		payload: {
-			position: newPosiiton,
-			direction,
-			walkIndex,
-			spriteLocation: getSpritePosition(direction, walkIndex)
-		}
+		payload: previousState
 	});
 };
 
