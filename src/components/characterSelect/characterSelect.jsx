@@ -8,6 +8,10 @@ import maleSprite from "../../assets/images/male_one-large.png";
 import maleTwoSprite from "../../assets/images/male_two-large.png";
 import femaleSprite from "../../assets/images/female_one-large.png";
 import femaleTwoSprite from "../../assets/images/female_two-large.png";
+import maleSpriteWalking from "../../assets/images/male_one-large_walking.png";
+import maleTwoSpriteWalking from "../../assets/images/male_two-large_walking.png";
+import femaleSpriteWalking from "../../assets/images/female_one_walking.png";
+import femaleTwoSpriteWalking from "../../assets/images/female_two_walking.png";
 
 class CharacterSelect extends Component {
 	handleStartButtonClick(player) {
@@ -43,30 +47,61 @@ class CharacterSelect extends Component {
 		});
 	}
 
+	handleImageUpdate(imageObj, keyName) {
+		return imageObj[keyName];
+	}
+
+	handleMouseEnter(event, imageObj) {
+		if (event.target.src) {
+			event.target.src = this.handleImageUpdate(imageObj, "after");
+		} else {
+			event.target.firstElementChild.src = this.handleImageUpdate(imageObj, "after");
+		}
+	}
+
+	handleMouseLeave(event, imageObj) {
+		if (event.target.src) {
+			event.target.src = this.handleImageUpdate(imageObj, "before");
+		} else {
+			event.target.firstElementChild.src = this.handleImageUpdate(imageObj, "before");
+		}
+	}
+
 	renderButtonChoice() {
 		let counter = 0;
 		return playChoices.map(player => {
 			counter += 1;
-			let image;
+			const image = {};
 			if (player.playerName === "Player 1") {
-				image = maleSprite;
+				image.before = maleSprite;
+				image.after = maleSpriteWalking;
 			} else if (player.playerName === "Player 2") {
-				image = maleTwoSprite;
+				image.before = maleTwoSprite;
+				image.after = maleTwoSpriteWalking;
 			} else if (player.playerName === "Player 3") {
-				image = femaleSprite;
+				image.before = femaleSprite;
+				image.after = femaleSpriteWalking;
 			} else if (player.playerName === "Player 4") {
-				image = femaleTwoSprite;
+				image.before = femaleTwoSprite;
+				image.after = femaleTwoSpriteWalking;
 			}
 			return (
 				<button
 					key={counter}
+					className="character-btn"
 					type="button"
 					onClick={() => {
 						this.handleStartButtonClick(player);
 					}}
+					onMouseEnter={event => {
+						this.handleMouseEnter(event, image);
+					}}
+					onMouseLeave={event => {
+						this.handleMouseLeave(event, image);
+					}}
 					value={player.playerId}
 				>
-					<img src={image} alt={player.playerName} />
+					<img src={image.before} alt={player.playerName} />
 				</button>
 			);
 		});
